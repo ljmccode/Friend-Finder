@@ -19,16 +19,16 @@
 
         <h3><strong>About You</strong></h3>
         <h4>Name (Required)</h4>
-        <input type="text" id="name" class="form-control" required>
+        <input type="text" id="name" class="input-check" required>
 
         <h4>Link to Photo Image (Required)</h4>
-        <input type="text" id="photo" class="form-control" required>
+        <input type="text" id="photo" class="input-check" required>
 
         <hr>
 
         <h3><strong>Question 1</strong></h3>
         <h4>You find yourself daydreaming about traveling the world.</h4>
-        <select class="chosen-select" id="q1">
+        <select class="selection-check" id="q1">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -39,7 +39,7 @@
 
         <h3><strong>Question 2</strong></h3>
         <h4>You prefer a great board game over the television.</h4>
-        <select class="chosen-select" id="q2">
+        <select class="selection-check" id="q2">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -51,7 +51,7 @@
 
         <h3><strong>Question 3</strong></h3>
         <h4>You enjoy learning something new.</h4>
-        <select class="chosen-select" id="q3">
+        <select class="selection-check" id="q3">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -63,7 +63,7 @@
 
         <h3><strong>Question 4</strong></h3>
         <h4>You consider yourself an easy-going person.</h4>
-        <select class="chosen-select" id="q4">
+        <select class="selection-check" id="q4">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -75,7 +75,7 @@
 
         <h3><strong>Question 5</strong></h3>
         <h4>You love sports.</h4>
-        <select class="chosen-select" id="q5">
+        <select class="selection-check" id="q5">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -87,7 +87,7 @@
 
         <h3><strong>Question 6</strong></h3>
         <h4>You like to talk about your emotions.</h4>
-        <select class="chosen-select" id="q6">
+        <select class="selection-check" id="q6">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -99,7 +99,7 @@
 
         <h3><strong>Question 7</strong></h3>
         <h4>You consider yourself a foodie.</h4>
-        <select class="chosen-select" id="q7">
+        <select class="selection-check" id="q7">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -110,7 +110,7 @@
 
         <h3><strong>Question 8</strong></h3>
         <h4>You enjoy the great outdoors.</h4>
-        <select class="chosen-select" id="q8">
+        <select class="selection-check" id="q8">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -121,7 +121,7 @@
 
         <h3><strong>Question 9</strong></h3>
         <h4>You're a thrill-seeker.</h4>
-        <select class="chosen-select" id="q9">
+        <select class="selection-check" id="q9">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -132,7 +132,7 @@
 
         <h3><strong>Question 10</strong></h3>
         <h4>You feel comfortable in a crowd.</h4>
-        <select class="chosen-select" id="q10">
+        <select class="selection-check" id="q10">
             <option value=""></option>
             <option value="1">1 (Strongly Disagree)</option>
             <option value="2">2</option>
@@ -149,6 +149,74 @@
             Submit</button>
 
         <!-- Modal -->
+        <div id='friendModal' class='modal fade' role='dialog'>
+            <div class='modal-dialog'>
+                <div class='modal-content'>
+                    <div class='modal-header'>
+                        <h2 class='modal-title'><b>Best Match</b></h2>
+                    </div>
+                    <div class='modal-body'>
+                        <h2 id='matchName'></h2>
+                        <img id='matchImg' scr="">
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $("#submit").on("click", function (event) {
+                event.preventDefault();
+
+                // <!-- Form validation -->
+                function formValidation() {
+                    var isValid = true;
+                    $(".input-check").each(function () {
+                        if ($(this).val() === "") {
+                            isValid = false;
+                        }
+                    });
+
+                    $(".selection-check").each(function () {
+                        if ($(this).val() === "") {
+                            isValid = false;
+                        }
+                    });
+                    return isValid;
+                }
+
+                // if user filled out all fields
+                if (formValidation()) {
+                    var newUser = {
+                        name: $('#name').val().trim(),
+                        photo: $('#photo').val().trim(),
+                        scores: [
+                            $('#q1').val(),
+                            $('#q2').val(),
+                            $('#q3').val(),
+                            $('#q4').val(),
+                            $('#q5').val(),
+                            $('#q6').val(),
+                            $('#q7').val(),
+                            $('#q8').val(),
+                            $('#q9').val(),
+                            $('#q10').val(),
+                        ]
+                    };
+                    // Ajax call
+                    $.post('/api/friends', newUser, function (data) {
+                        // adding match to modal
+                        $('#matchName').text(data.name);
+                        $('#matchImg').attr('src', data.photo);
+                        $('friendModal').modal('toggle');
+                    });
+                } else {
+                    alert('Please fill out all possible fields of survey!')
+                }
+            })
+        </script>
 </body>
 
 </html>
