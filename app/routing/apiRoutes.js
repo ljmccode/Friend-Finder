@@ -16,7 +16,7 @@ module.exports = function(app) {
 
         // find match!
         var matchIndex = '';
-        friendMatch = '';
+        var friendMatch = '';
 
         // set base differential that will get replaced
         var totalDifference = 100;
