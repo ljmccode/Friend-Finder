@@ -183,7 +183,7 @@
 
             $("#submit").on("click", function (event) {
                 event.preventDefault();
-
+console.log('clicked!!');
                 // <!-- Form validation -->
                 function formValidation() {
                     var isValid = true;
@@ -225,7 +225,8 @@
                         // adding match to modal
                         $('#matchName').text(data.name);
                         $('#matchImg').attr('src', data.photo);
-                        $('friendModal').modal('toggle');
+                        $('#friendModal').modal('toggle');
+                        console.log(data);
                     });
                 } else {
                     alert('Please fill out all possible fields of survey!')

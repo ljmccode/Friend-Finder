@@ -1,6 +1,6 @@
 var friends = require('../data/friends');
 
-module.exports = function(app) {
+function apiRoutes(app) {
 
     // list friends from friends.js in json
     app.get('/api/friends', function(request, response) {
@@ -8,7 +8,7 @@ module.exports = function(app) {
     })
 
     // add new friend 
-    app.post('api/friends', function(request, response) {
+    app.post('/api/friends', function(request, response) {
         console.log(request.body)
         // creating a variable for new user scores
         var newUser = request.body
@@ -34,6 +34,7 @@ module.exports = function(app) {
                 
             }
         }
+        console.log('new User', newUser);
         // push new user to friends data
         friends.push(newUser);
 
@@ -41,3 +42,6 @@ module.exports = function(app) {
         response.json(friendMatch);
     })
 }
+
+// Export to server.js
+module.exports = apiRoutes;

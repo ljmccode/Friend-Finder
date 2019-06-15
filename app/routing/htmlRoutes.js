@@ -1,15 +1,18 @@
 // dependencies
 var path = require('path');
 
-module.exports = function(app) {
-
-    // route to home page
-    app.use('/', function (request, response) {
-        response.sendFile(path.join(_dirname, "/../public/home.html"));
-    })
+function htmlRoutes(app) {
 
     // route to survey page
     app.get('/survey', function (request, response) {
-        response.sendFile(path.join(_dirname, "/../public/survey.html"));
+        response.sendFile(path.join(__dirname, "/../public/survey.html"));
     })
+    // route to home page
+    app.use('*', function (request, response) {
+        response.sendFile(path.join(__dirname, "/../public/home.html"));
+    })
+
 }
+
+// Export to server.js
+module.exports = htmlRoutes;
