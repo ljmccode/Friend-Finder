@@ -50,7 +50,7 @@ var friends = [
   },
   {
     name: "Leslie Knope",
-    photo: "https://images.hellogiggles.com/uploads/2018/02/23060838/amy-e1519423764301.jpg",
+    photo: "https://am21.akamaized.net/tms/cnt/uploads/2015/03/Leslie-Knope-Finale.png",
     scores: [
         3,
         5,
