@@ -4,7 +4,9 @@ import fs from "fs";
 
 function htmlRoutes(app) {
 
-    const __dirname= fs.realpathSync("../Friend-Finder");
+    const __dirname= fs.realpathSync(".");
+
+    console.log(__dirname);
 
     // route to survey page
     app.get("/survey", (request, response) => {
