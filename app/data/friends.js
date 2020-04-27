@@ -1,5 +1,5 @@
 // DATA
-var friends = [
+const friends = [
 {
     name: "Walter White",
     photo: "https://cdn3.movieweb.com/i/article/0TvMcG4es3dx98j6ltEqJaCVeo94ni/798:50/Breaking-Bad-Movie-Bryan-Cranston-Responds.jpg",
@@ -128,6 +128,6 @@ var friends = [
         3
       ]
   }
-]
+];
 
 module.exports = friends;
