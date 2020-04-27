@@ -1,4 +1,6 @@
-# Description
+# Friend Finder Survey
+
+## Description
 
 Friend-Finder is a compatibility-based test that matches you with a lucky person in our database! Click on the `Go to Survey` button on the home page to get started.
 
@@ -12,10 +14,12 @@ If you have filled out all questions, a modal will pop up upon submission that m
 
 ![Modal](app/images/Modal.png)
 
-# Deployment
+## Deployment
+
 Friend-finder is hosted on Heroku: [Heroku application](https://radiant-plains-30772.herokuapp.com/survey)
 
-# Languages and Tools Used
+## Languages and Tools Used
+
 * APIs
 * Node.js
 * Express
@@ -23,5 +27,5 @@ Friend-finder is hosted on Heroku: [Heroku application](https://radiant-plains-3
 * Routing
 * Bootstrap
 * jQuery
-* Javascript
+* JavaScript
 * HTML
