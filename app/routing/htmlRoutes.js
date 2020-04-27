@@ -1,18 +1,21 @@
 // dependencies
-const path = require("path");
+import { join  } from "path";
+import fs from "fs";
 
 function htmlRoutes(app) {
 
+    const __dirname= fs.realpathSync("../Friend-Finder");
+
     // route to survey page
     app.get("/survey", (request, response) => {
-        response.sendFile(path.join(__dirname, "/../public/survey.html"));
+        response.sendFile(join(__dirname, "app/public/survey.html"));
     });
     // route to home page
     app.use("*", (request, response) => {
-        response.sendFile(path.join(__dirname, "/../public/home.html"));
+        response.sendFile(join(__dirname, "app/public/home.html"));
     });
 
 }
 
 // Export to server.js
-module.exports = htmlRoutes;
+export default htmlRoutes;
